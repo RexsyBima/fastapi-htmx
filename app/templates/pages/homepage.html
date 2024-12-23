@@ -1,0 +1,27 @@
+{% extends "base/index.html" %}
+
+{% block title %}
+<title>Homepage</title>
+{% endblock title %}
+{% block body %}
+<h1>Welcome to user contact app</h1>
+<form hx-post="/api/add-user" hx-target="#contacts" hx-swap="afterbegin">
+	<label for="username">username</label>
+	<input type="text" name="username" value="" id="username">
+	<label for="hobby">hobby</label>
+	<input type="text" name="hobby" value="" id="hobby">
+	<button type="submit">add user</button>
+</form>
+
+<div id="status">
+	
+</div>
+
+
+<div id="contacts">
+	{% for contact in contacts  %}
+	<p hx-delete="/api/delete/{{ contact.username }}" hx-swap="delete">{{ contact.username }}</p>
+	<a hx-boost="true" href="/api/user/{{ contact }}" >{{ contact.username }}</a>
+	{% endfor %}
+</div>
+{% endblock body %}

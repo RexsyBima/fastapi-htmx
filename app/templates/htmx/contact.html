@@ -1,0 +1,7 @@
+<p hx-delete="/api/delete/{{ contact }}" hx-swap="delete">{{ contact }}</p>
+
+{% if success %}
+{% include "htmx/success.html" %}
+{% else %}
+{% include "htmx/fail.html" %}
+{% endif %}
